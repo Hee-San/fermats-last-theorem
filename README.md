@@ -65,7 +65,10 @@ already contains it (if you obtained `html/` as a separate archive, unpack it at
 Chromium-based browser only, and `html/README-DOCS.md` explains what is quoted from the Lean files and what is
 generated (the English summaries and suggested references are generated automatically; the Lean statement is
 authoritative). A Japanese version of the overview, the route chapters, the landmark graph, the documents index and
-these notes is at `html/ja/index.html`; the theorem and definition pages themselves are English only.
+these notes is at `html/ja/index.html`; the theorem and definition pages themselves are English only. The same folder
+is also published with GitHub Pages by `.github/workflows/pages.yml`, on every push to `main` that touches `html/`, at
+`https://<owner>.github.io/<repo>/` (for this repository, https://hee-san.github.io/fermats-last-theorem/); there the
+links to the `.lean` files point at the same files on github.com, since only `html/` is served.
 
 ## Check it yourself
 

@@ -160,6 +160,7 @@
       }
       document.getElementById("source-box").innerHTML = '<h2>Source</h2>' + src.join("");
       FLT.wireCopyButtons(main);
+      FLT.fixRepoLinks(main);
     });
   }
 })();

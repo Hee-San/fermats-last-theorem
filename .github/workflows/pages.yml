@@ -1,0 +1,43 @@
+# Publishes the html/ folder (the reader's pages, about 380 MB, 2,087 files) with GitHub Pages.
+# Nothing is built: the folder is uploaded as it is committed, so the site is exactly what a clone shows from disk.
+# One-time setup: Settings → Pages → "Build and deployment" → Source: "GitHub Actions" (configure-pages below tries to do
+# this itself; if it cannot, set it by hand and re-run the workflow). The site then lives at https://<owner>.github.io/<repo>/.
+name: Publish html/ to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+    paths: ['html/**', '.github/workflows/pages.yml']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Check out html/ only (the Lean sources are about 1.3 GB and are not published)
+        uses: actions/checkout@v4
+        with:
+          sparse-checkout: html
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+        with:
+          enablement: true
+      - name: Upload html/ as the Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: html
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4
