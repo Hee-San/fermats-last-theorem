@@ -34,5 +34,9 @@ repository's own prose documents rendered with cross-links.
   Their mathematics is typeset in the browser by the bundled KaTeX (assets/vendor/katex/katex.min.js).
   References are suggested automatically and have not been individually verified.
 * 'About these pages' (about.html) states the conventions and the limits of a textual reading of the tree.
+* 'ja/' holds a Japanese version of the overview, the route chapters (with PROOF-PATH.md translated), the landmark
+  graph, the documents index (with README.md translated) and about.html. The prose is a translation of the English
+  pages; the Lean statements, the figures, the theorem cards' English titles and the theorem, definition and area
+  pages are shared with the English version and remain English. Each page links to its English counterpart.
 
 Size: about 390 MB unpacked, 2,073 files. Generated 2026-09-03.

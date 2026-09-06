@@ -1,20 +1,18 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>§1 From the elementary statement to a prime exponent p ≥ 5 · FLT in Lean 4</title>
-<link rel="stylesheet" href="../assets/site.css"><link rel="stylesheet" href="../assets/vendor/katex/katex-embedded.css">
-<script>window.FLT_ROOT = "../";</script>
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>§1 初等的な主張から素数指数 p \ge 5 へ · FLT in Lean 4（日本語）</title>
+<link rel="stylesheet" href="../../assets/site.css"><link rel="stylesheet" href="../../assets/vendor/katex/katex-embedded.css"><link rel="stylesheet" href="../assets/ja.css">
+<script>window.FLT_ROOT = "../../";</script>
 
 </head><body>
 <header class="top"><div class="inner">
-<a class="brand" href="../index.html"><b>Fermat's Last Theorem</b> in Lean 4</a>
-<nav><a href="../index.html">Overview</a><a href="../route/index.html" class="cur">Route</a><a href="../dag/index.html">Landmark graph</a><a href="../thm.html">Theorems</a><a href="../areas/index.html">Areas</a><a href="../def/index.html">Definitions</a><a href="../docs/index.html">Documents</a><a href="../about.html">About</a><a href="../ja/route/s1.html" class="lang" lang="ja" title="Japanese version">日本語</a></nav>
-<div class="search"><input id="q" type="search" placeholder="Search 29,511 theorems and 1,450 definition files by name…" autocomplete="off" spellcheck="false"><div id="q-results"></div></div>
+<a class="brand" href="../index.html"><b>フェルマーの最終定理</b> in Lean 4</a>
+<nav><a href="../index.html">概要</a><a href="../route/index.html" class="cur">証明の道筋</a><a href="../dag/index.html">ランドマーク図</a><a href="../../thm.html" title="英語版のページ">定理</a><a href="../../areas/index.html" title="英語版のページ">分野</a><a href="../../def/index.html" title="英語版のページ">定義</a><a href="../docs/index.html">文書</a><a href="../about.html">このページについて</a><a href="../../route/s1.html" class="lang" lang="en" title="このページの英語版">English</a></nav>
+<div class="search"><input id="q" type="search" placeholder="定理 29,511 件と定義ファイル 1,450 件を名前で検索…" autocomplete="off" spellcheck="false"><div id="q-results"></div></div>
 </div></header>
 <main class="prose">
-<article class="prose math-scope"><h2 id="1-from-the-elementary-statement-to-a-prime-exponent-p-5">1. From the elementary statement to a prime exponent p ≥ 5</h2>
-<p><a href="../thm.html#fermat_last_theorem"><code>fermat_last_theorem</code></a> (<a href="../thm.html#fermat_last_theorem"><code>Theorems/Thm_fermat_last_theorem.lean</code></a>) is the elementary statement over ℕ quoted in the
-top-level README. Its proof module is two lines: it applies <a href="../thm.html#FLT.fermatLastTheorem"><code>FLT.fermatLastTheorem : FermatLastTheorem</code></a>
-(<a href="../thm.html#FLT.fermatLastTheorem"><code>Theorems/Thm_FLT_fermatLastTheorem.lean</code></a>), Mathlib's own formulation, which in turn is proved by</p>
+<article class="prose math-scope"><h2 id="1-from-the-elementary-statement-to-a-prime-exponent-p-5">1. 初等的な主張から素数指数 <span class="katex"><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8304em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">p</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≥</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">5</span></span></span></span> へ</h2>
+<p><a href="../../thm.html#fermat_last_theorem"><code>fermat_last_theorem</code></a>（<a href="../../thm.html#fermat_last_theorem"><code>Theorems/Thm_fermat_last_theorem.lean</code></a>）は、最上位の README に引用されている ℕ 上の初等的な主張です。その証明モジュールは二行で、Mathlib 自身の定式化である <a href="../../thm.html#FLT.fermatLastTheorem"><code>FLT.fermatLastTheorem : FermatLastTheorem</code></a>（<a href="../../thm.html#FLT.fermatLastTheorem"><code>Theorems/Thm_FLT_fermatLastTheorem.lean</code></a>）を適用します。後者は次のように証明されます。</p>
 <pre class="lean"><span class="kn">theorem</span> solution : FermatLastTheorem := <span class="k">by</span>
   apply FermatLastTheorem.of_odd_primes
   intro p pp p_odd
@@ -26,10 +24,7 @@ top-level README. Its proof module is two lines: it applies <a href="../thm.html
     · exact fermatLastTheoremThree
     · exact absurd pp (<span class="k">by</span> decide)
 </pre>
-<p>(<a href="../thm.html#FLT.fermatLastTheorem"><code>P2M/Sol/S_FLT_fermatLastTheorem.lean</code></a> after its preamble; <code>FermatLastTheorem.of_odd_primes</code>, which uses exponent 4
-internally, and <code>fermatLastTheoremThree</code> are Mathlib's). Everything else hangs below
-<a href="../thm.html#FreyPackage.fermatLastTheoremFor_of_five_le"><code>FreyPackage.fermatLastTheoremFor_of_five_le (p : ℕ) (pp : p.Prime) (hp5 : 5 ≤ p) : FermatLastTheoremFor p</code></a>, which is
-proved from exactly two theorems: <a href="../thm.html#FreyPackage.of_counterexample"><code>FreyPackage.of_counterexample</code></a> and <a href="../thm.html#FreyPackage.no_frey_package"><code>FreyPackage.no_frey_package</code></a>.</p></article><p class="muted small"><a href="index.html">← The route</a> · <a href="s2.html">§2 The Frey package and the four-way contradiction</a> →</p><h2>How the theorems of this step depend on each other</h2><p class="muted small">Green cards are the landmarks named in this section; dashed white cards are landmarks of neighbouring steps they connect to. Premises above conclusions; an arrow may pass through unnamed intermediate theorems. Click a card for its page.</p><div class="figure zoomable" title="click to enlarge"><svg width="551pt" height="381pt"
+<p>（<a href="../../thm.html#FLT.fermatLastTheorem"><code>P2M/Sol/S_FLT_fermatLastTheorem.lean</code></a> の前置き以降。内部で指数 4 を使う <code>FermatLastTheorem.of_odd_primes</code> と <code>fermatLastTheoremThree</code> は Mathlib のものです。）それ以外のすべては <a href="../../thm.html#FreyPackage.fermatLastTheoremFor_of_five_le"><code>FreyPackage.fermatLastTheoremFor_of_five_le (p : ℕ) (pp : p.Prime) (hp5 : 5 ≤ p) : FermatLastTheoremFor p</code></a> の下にぶら下がっており、この定理はちょうど二つの定理、<a href="../../thm.html#FreyPackage.of_counterexample"><code>FreyPackage.of_counterexample</code></a> と <a href="../../thm.html#FreyPackage.no_frey_package"><code>FreyPackage.no_frey_package</code></a> から証明されます。</p></article><p class="muted small">← <a href="index.html">証明の道筋</a> · <a href="s2.html">§2 Frey パッケージと四つの定理による矛盾</a> →</p><h2>このステップの定理どうしの依存関係</h2><p class="muted small">緑のカードはこの節で名前の挙がるランドマーク、破線の白いカードはそれらがつながる隣接ステップのランドマークです。前提が上、結論が下。矢印は名前の挙がらない中間の定理を経由することがあります。カードをクリックするとその定理のページ（英語）が開きます。図のラベルは英語のままです。</p><div class="figure zoomable" title="クリックで拡大"><svg width="551pt" height="381pt"
  viewBox="0.00 0.00 550.58 380.86" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(14.4 366.46)">
 <title>L</title>
@@ -37,7 +32,7 @@ proved from exactly two theorems: <a href="../thm.html#FreyPackage.of_counterexa
 <g id="node1" class="node">
 <title>n0</title>
 <path fill="#2f7d55" stroke="#1e5c3c" stroke-width="1.6" d="M412.15,-36.64C412.15,-36.64 279.62,-36.64 279.62,-36.64 273.62,-36.64 267.62,-30.64 267.62,-24.64 267.62,-24.64 267.62,-12 267.62,-12 267.62,-6 273.62,0 279.62,0 279.62,0 412.15,0 412.15,0 418.15,0 424.15,-6 424.15,-12 424.15,-12 424.15,-24.64 424.15,-24.64 424.15,-30.64 418.15,-36.64 412.15,-36.64"/>
-<g id="a_node1_0"><a xlink:href="../thm.html#fermat_last_theorem" xlink:title="fermat_last_theorem">
+<g id="a_node1_0"><a xlink:href="../../thm.html#fermat_last_theorem" xlink:title="fermat_last_theorem">
 <text text-anchor="start" x="277.26" y="-19.92" font-family="Helvetica,sans-Serif" font-size="12.00" fill="#ffffff">Fermat&#39;s Last Theorem</text>
 <text text-anchor="start" x="303.14" y="-7.47" font-family="DejaVu Sans Mono" font-size="8.00" fill="#cfe7d8">fermat_last_theorem</text>
 </a>
@@ -47,7 +42,7 @@ proved from exactly two theorems: <a href="../thm.html#FreyPackage.of_counterexa
 <g id="node2" class="node">
 <title>n1</title>
 <path fill="white" stroke="#6fa287" stroke-width="1.2" stroke-dasharray="5,2" d="M440.28,-141.78C440.28,-141.78 251.5,-141.78 251.5,-141.78 245.5,-141.78 239.5,-135.78 239.5,-129.78 239.5,-129.78 239.5,-88.64 239.5,-88.64 239.5,-82.64 245.5,-76.64 251.5,-76.64 251.5,-76.64 440.28,-76.64 440.28,-76.64 446.28,-76.64 452.28,-82.64 452.28,-88.64 452.28,-88.64 452.28,-129.78 452.28,-129.78 452.28,-135.78 446.28,-141.78 440.28,-141.78"/>
-<g id="a_node2_1"><a xlink:href="../thm.html#FreyPackage.fermatLastTheoremFor_of_five_le" xlink:title="FreyPackage.fermatLastTheoremFor_of_five_le">
+<g id="a_node2_1"><a xlink:href="../../thm.html#FreyPackage.fermatLastTheoremFor_of_five_le" xlink:title="FreyPackage.fermatLastTheoremFor_of_five_le">
 <text text-anchor="start" x="277.26" y="-125.06" font-family="Helvetica,sans-Serif" font-size="12.00" fill="#1f3b2c">Fermat&#39;s Last Theorem</text>
 <text text-anchor="start" x="272.39" y="-110.81" font-family="Helvetica,sans-Serif" font-size="12.00" fill="#1f3b2c">for prime exponents p ≥</text>
 <text text-anchor="start" x="342.14" y="-96.56" font-family="Helvetica,sans-Serif" font-size="12.00" fill="#1f3b2c">5</text>
@@ -65,7 +60,7 @@ proved from exactly two theorems: <a href="../thm.html#FreyPackage.of_counterexa
 <g id="node3" class="node">
 <title>n2</title>
 <path fill="#e6f2ea" stroke="#6fa287" stroke-width="1.2" d="M327.15,-232.67C327.15,-232.67 194.62,-232.67 194.62,-232.67 188.62,-232.67 182.62,-226.67 182.62,-220.67 182.62,-220.67 182.62,-208.03 182.62,-208.03 182.62,-202.03 188.62,-196.03 194.62,-196.03 194.62,-196.03 327.15,-196.03 327.15,-196.03 333.15,-196.03 339.15,-202.03 339.15,-208.03 339.15,-208.03 339.15,-220.67 339.15,-220.67 339.15,-226.67 333.15,-232.67 327.15,-232.67"/>
-<g id="a_node3_2"><a xlink:href="../thm.html#FreyPackage.no_frey_package" xlink:title="FreyPackage.no_frey_package">
+<g id="a_node3_2"><a xlink:href="../../thm.html#FreyPackage.no_frey_package" xlink:title="FreyPackage.no_frey_package">
 <text text-anchor="start" x="192.26" y="-215.95" font-family="Helvetica,sans-Serif" font-size="12.00" fill="#1f3b2c">No Frey package exists</text>
 <text text-anchor="start" x="200.14" y="-203.5" font-family="DejaVu Sans Mono" font-size="8.00" fill="#5c7466">FreyPackage.no_frey_package</text>
 </a>
@@ -81,7 +76,7 @@ proved from exactly two theorems: <a href="../thm.html#FreyPackage.of_counterexa
 <g id="node4" class="node">
 <title>n3</title>
 <path fill="#e6f2ea" stroke="#6fa287" stroke-width="1.2" d="M494.78,-246.92C494.78,-246.92 369,-246.92 369,-246.92 363,-246.92 357,-240.92 357,-234.92 357,-234.92 357,-193.78 357,-193.78 357,-187.78 363,-181.78 369,-181.78 369,-181.78 494.78,-181.78 494.78,-181.78 500.78,-181.78 506.78,-187.78 506.78,-193.78 506.78,-193.78 506.78,-234.92 506.78,-234.92 506.78,-240.92 500.78,-246.92 494.78,-246.92"/>
-<g id="a_node4_3"><a xlink:href="../thm.html#FreyPackage.of_counterexample" xlink:title="FreyPackage.of_counterexample">
+<g id="a_node4_3"><a xlink:href="../../thm.html#FreyPackage.of_counterexample" xlink:title="FreyPackage.of_counterexample">
 <text text-anchor="start" x="370.39" y="-230.2" font-family="Helvetica,sans-Serif" font-size="12.00" fill="#1f3b2c">Frey package from a</text>
 <text text-anchor="start" x="375.26" y="-215.95" font-family="Helvetica,sans-Serif" font-size="12.00" fill="#1f3b2c">counterexample of</text>
 <text text-anchor="start" x="385.76" y="-201.7" font-family="Helvetica,sans-Serif" font-size="12.00" fill="#1f3b2c">exponent p ≥ 5</text>
@@ -99,7 +94,7 @@ proved from exactly two theorems: <a href="../thm.html#FreyPackage.of_counterexa
 <g id="node5" class="node">
 <title>n4</title>
 <path fill="white" stroke="#6fa287" stroke-width="1.2" stroke-dasharray="5,2" d="M155.78,-352.06C155.78,-352.06 12,-352.06 12,-352.06 6,-352.06 0,-346.06 0,-340.06 0,-340.06 0,-298.92 0,-298.92 0,-292.92 6,-286.92 12,-286.92 12,-286.92 155.78,-286.92 155.78,-286.92 161.78,-286.92 167.78,-292.92 167.78,-298.92 167.78,-298.92 167.78,-340.06 167.78,-340.06 167.78,-346.06 161.78,-352.06 155.78,-352.06"/>
-<g id="a_node5_4"><a xlink:href="../thm.html#FreyPackage.Mazur_Frey" xlink:title="FreyPackage.Mazur_Frey">
+<g id="a_node5_4"><a xlink:href="../../thm.html#FreyPackage.Mazur_Frey" xlink:title="FreyPackage.Mazur_Frey">
 <text text-anchor="start" x="28.01" y="-335.34" font-family="Helvetica,sans-Serif" font-size="12.00" fill="#1f3b2c">Irreducibility of the</text>
 <text text-anchor="start" x="9.64" y="-321.09" font-family="Helvetica,sans-Serif" font-size="12.00" fill="#1f3b2c">mod&#45;p torsion module of</text>
 <text text-anchor="start" x="41.14" y="-306.84" font-family="Helvetica,sans-Serif" font-size="12.00" fill="#1f3b2c">the Frey curve</text>
@@ -117,7 +112,7 @@ proved from exactly two theorems: <a href="../thm.html#FreyPackage.of_counterexa
 <g id="node6" class="node">
 <title>n5</title>
 <path fill="white" stroke="#6fa287" stroke-width="1.2" stroke-dasharray="5,2" d="M323.78,-344.94C323.78,-344.94 198,-344.94 198,-344.94 192,-344.94 186,-338.94 186,-332.94 186,-332.94 186,-306.05 186,-306.05 186,-300.05 192,-294.05 198,-294.05 198,-294.05 323.78,-294.05 323.78,-294.05 329.78,-294.05 335.78,-300.05 335.78,-306.05 335.78,-306.05 335.78,-332.94 335.78,-332.94 335.78,-338.94 329.78,-344.94 323.78,-344.94"/>
-<g id="a_node6_5"><a xlink:href="../thm.html#FreyPackage.frey_isModular" xlink:title="FreyPackage.frey_isModular">
+<g id="a_node6_5"><a xlink:href="../../thm.html#FreyPackage.frey_isModular" xlink:title="FreyPackage.frey_isModular">
 <text text-anchor="start" x="195.64" y="-328.22" font-family="Helvetica,sans-Serif" font-size="12.00" fill="#1f3b2c">Modularity of the Frey</text>
 <text text-anchor="start" x="244.01" y="-313.97" font-family="Helvetica,sans-Serif" font-size="12.00" fill="#1f3b2c">curve</text>
 <text text-anchor="start" x="202.39" y="-301.51" font-family="DejaVu Sans Mono" font-size="8.00" fill="#5c7466">FreyPackage.frey_isModular</text>
@@ -134,7 +129,7 @@ proved from exactly two theorems: <a href="../thm.html#FreyPackage.of_counterexa
 <g id="node7" class="node">
 <title>n6</title>
 <path fill="white" stroke="#6fa287" stroke-width="1.2" stroke-dasharray="5,2" d="M509.78,-344.94C509.78,-344.94 366,-344.94 366,-344.94 360,-344.94 354,-338.94 354,-332.94 354,-332.94 354,-306.05 354,-306.05 354,-300.05 360,-294.05 366,-294.05 366,-294.05 509.78,-294.05 509.78,-294.05 515.78,-294.05 521.78,-300.05 521.78,-306.05 521.78,-306.05 521.78,-332.94 521.78,-332.94 521.78,-338.94 515.78,-344.94 509.78,-344.94"/>
-<g id="a_node7_6"><a xlink:href="../thm.html#FreyPackage.level_lowering_to_two" xlink:title="FreyPackage.level_lowering_to_two">
+<g id="a_node7_6"><a xlink:href="../../thm.html#FreyPackage.level_lowering_to_two" xlink:title="FreyPackage.level_lowering_to_two">
 <text text-anchor="start" x="371.14" y="-328.22" font-family="Helvetica,sans-Serif" font-size="12.00" fill="#1f3b2c">Level lowering to Γ₀(2)</text>
 <text text-anchor="start" x="384.64" y="-313.97" font-family="Helvetica,sans-Serif" font-size="12.00" fill="#1f3b2c">for the Frey curve</text>
 <text text-anchor="start" x="363.64" y="-301.51" font-family="DejaVu Sans Mono" font-size="8.00" fill="#5c7466">FreyPackage.level_lowering_to_two</text>
@@ -149,12 +144,13 @@ proved from exactly two theorems: <a href="../thm.html#FreyPackage.of_counterexa
 </g>
 </g>
 </svg>
-</div><h2 id="named">Theorems named in this section <span class="muted small">(3; statement as in the tree, numbers from the import graph)</span></h2><div class="thm-card"><div><b>Fermat&#x27;s Last Theorem</b> <a class="name" href="../thm.html#fermat_last_theorem">fermat_last_theorem</a></div><pre class="lean"><span class="kn">theorem</span> fermat_last_theorem (n : ℕ) (hn : <span class="mi">3</span> ≤ n) (a b c : ℕ) (ha : <span class="mi">0</span> &lt; a) (hb : <span class="mi">0</span> &lt; b) (hc : <span class="mi">0</span> &lt; c) : a ^ n + b ^ n ≠ c ^ n
-</pre><div class="meta">29,488 theorems below · cites 1 · cited by 0 · depth 0 · proof 3 lines, 0 helpers</div></div><div class="thm-card"><div><b>Frey package from a counterexample of exponent <span class="katex"><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8304em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">p</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≥</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">5</span></span></span></span></b> <a class="name" href="../thm.html#FreyPackage.of_counterexample">FreyPackage.of_counterexample</a></div><pre class="lean"><span class="kn">theorem</span> FreyPackage.of_counterexample (a b c : ℤ) (ha : a ≠ <span class="mi">0</span>) (hb : b ≠ <span class="mi">0</span>) (hc : c ≠ <span class="mi">0</span>) (p : ℕ) (pp : p.Prime) (hp5 : <span class="mi">5</span> ≤ p) (H : a ^ p + b ^ p = c ^ p) : Nonempty <a class="id" href="../def/FLTPrelim_FreyPackage.html#L17" title="structure FreyPackage — Def_FLTPrelim_FreyPackage.lean, line 17">FreyPackage</a>
-</pre><div class="meta">0 theorems below · cites 0 · cited by 1 · depth 3 · proof 61 lines, 1 helpers</div></div><div class="thm-card"><div><b>No Frey package exists</b> <a class="name" href="../thm.html#FreyPackage.no_frey_package">FreyPackage.no_frey_package</a></div><pre class="lean"><span class="kn">theorem</span> FreyPackage.no_frey_package (P : <a class="id" href="../def/FLTPrelim_FreyPackage.html#L17" title="structure FreyPackage — Def_FLTPrelim_FreyPackage.lean, line 17">FreyPackage</a>) : False
-</pre><div class="meta">29,484 theorems below · cites 4 · cited by 1 · depth 3 · proof 13 lines, 1 helpers</div></div><p class="muted small">2 theorems of the tree are first reached through this step, in the sense that the first landmark met on a shortest citation path up to <code>fermat_last_theorem</code> is one named in this section. That is a reading aid, not a classification: the infrastructure below modularity and level lowering is largely shared.</p><p class="muted small"><a href="index.html">← The route</a> · <a href="s2.html">§2 The Frey package and the four-way contradiction</a> →</p>
+</div><h2 id="named">この節で名前の挙がる定理 <span class="muted small">（3 件。命題は木にあるとおり、数はインポートグラフから）</span></h2><div class="thm-card"><div><b>フェルマーの最終定理</b> <span class="muted small">Fermat&#x27;s Last Theorem</span> <a class="name" href="../../thm.html#fermat_last_theorem">fermat_last_theorem</a></div><pre class="lean"><span class="kn">theorem</span> fermat_last_theorem (n : ℕ) (hn : <span class="mi">3</span> ≤ n) (a b c : ℕ) (ha : <span class="mi">0</span> &lt; a) (hb : <span class="mi">0</span> &lt; b) (hc : <span class="mi">0</span> &lt; c) : a ^ n + b ^ n ≠ c ^ n
+</pre><div class="meta">下位の定理 29,488 件 · 引用 1 · 被引用 0 · 深さ 0 · 証明 3 行、補助補題 0 件</div></div><div class="thm-card"><div><b>指数 <span class="katex"><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8304em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">p</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≥</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">5</span></span></span></span> の反例から Frey パッケージを作る</b> <span class="muted small">Frey package from a counterexample of exponent <span class="katex"><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8304em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">p</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≥</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">5</span></span></span></span></span> <a class="name" href="../../thm.html#FreyPackage.of_counterexample">FreyPackage.of_counterexample</a></div><pre class="lean"><span class="kn">theorem</span> FreyPackage.of_counterexample (a b c : ℤ) (ha : a ≠ <span class="mi">0</span>) (hb : b ≠ <span class="mi">0</span>) (hc : c ≠ <span class="mi">0</span>) (p : ℕ) (pp : p.Prime) (hp5 : <span class="mi">5</span> ≤ p) (H : a ^ p + b ^ p = c ^ p) : Nonempty <a class="id" href="../../def/FLTPrelim_FreyPackage.html#L17" title="structure FreyPackage — Def_FLTPrelim_FreyPackage.lean, line 17">FreyPackage</a>
+</pre><div class="meta">下位の定理 0 件 · 引用 0 · 被引用 1 · 深さ 3 · 証明 61 行、補助補題 1 件</div></div><div class="thm-card"><div><b>Frey パッケージは存在しない</b> <span class="muted small">No Frey package exists</span> <a class="name" href="../../thm.html#FreyPackage.no_frey_package">FreyPackage.no_frey_package</a></div><pre class="lean"><span class="kn">theorem</span> FreyPackage.no_frey_package (P : <a class="id" href="../../def/FLTPrelim_FreyPackage.html#L17" title="structure FreyPackage — Def_FLTPrelim_FreyPackage.lean, line 17">FreyPackage</a>) : False
+</pre><div class="meta">下位の定理 29,484 件 · 引用 4 · 被引用 1 · 深さ 3 · 証明 13 行、補助補題 1 件</div></div><p class="muted small">木の 2 個の定理がこのステップで初めて到達されます。これは、<code>fermat_last_theorem</code> までの最短引用経路上で最初に出会うランドマークがこの節で名前の挙がるものである、という意味です。読むための補助であって分類ではありません。モジュラー性とレベル下げの下にある基盤の大部分は共有されています。</p><p class="muted small">← <a href="index.html">証明の道筋</a> · <a href="s2.html">§2 Frey パッケージと四つの定理による矛盾</a> →</p>
+
 </main>
-<footer>Documents the Lean sources in this repository (Lean v4.33.1, Mathlib v4.33.0). Statements are quoted textually from the .lean files; dependency edges are the <code>import Theorems.Thm_…</code> lines of the proof modules. <a href="../about.html">About these pages</a>.</footer>
-<script src="../assets/hl.js"></script><script src="../assets/site.js"></script>
+<footer>このリポジトリの Lean ソース（Lean v4.33.1, Mathlib v4.33.0）を解説するページ。命題文は .lean ファイルから逐語的に引用し、依存関係の辺は証明モジュールの <code>import Theorems.Thm_…</code> 行から取っている。定理・定義の個別ページは英語版のみ。<a href="../about.html">このページについて</a>。</footer>
+<script src="../../assets/hl.js"></script><script src="../../assets/site.js"></script>
 
 </body></html>

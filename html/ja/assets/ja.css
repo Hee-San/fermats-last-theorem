@@ -1,0 +1,6 @@
+/* Japanese pages: CJK font stacks in front of the site's own, slightly looser leading. */
+:root{--serif:"Hiragino Mincho ProN","Hiragino Mincho Pro","Yu Mincho","YuMincho","Noto Serif CJK JP","Noto Serif JP","Source Han Serif JP","BIZ UDMincho",Georgia,"Times New Roman",serif;--sans:"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic","YuGothic","Noto Sans CJK JP","Noto Sans JP","Source Han Sans JP","BIZ UDGothic",Meiryo,Helvetica,Arial,sans-serif}
+.prose p,.prose li,.card p,.caption,.imperial{line-height:1.8}
+header.top nav a.lang{border:1px solid #C6D2C9;border-radius:10px;padding:0 .55em;font-size:.82rem}
+table.plain td .muted.small[lang=en]{font-size:.72rem}
+.ja-note{background:#F4F8F5;border:1px solid var(--rule);border-left:4px solid var(--green);border-radius:0 8px 8px 0;padding:.5rem 1rem;margin:0 0 1rem;font-size:.9rem}
