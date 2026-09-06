@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>README（日本語訳） · FLT in Lean 4（日本語）</title>
+<link rel="stylesheet" href="../../assets/site.css"><link rel="stylesheet" href="../../assets/vendor/katex/katex-embedded.css"><link rel="stylesheet" href="../assets/ja.css">
+<script>window.FLT_ROOT = "../../";</script>
+
+</head><body>
+<header class="top"><div class="inner">
+<a class="brand" href="../index.html"><b>フェルマーの最終定理</b> in Lean 4</a>
+<nav><a href="../index.html">概要</a><a href="../route/index.html">証明の道筋</a><a href="../dag/index.html">ランドマーク図</a><a href="../../thm.html" title="英語版のページ">定理</a><a href="../../areas/index.html" title="英語版のページ">分野</a><a href="../../def/index.html" title="英語版のページ">定義</a><a href="../docs/index.html" class="cur">文書</a><a href="../about.html">このページについて</a><a href="../../docs/readme.html" class="lang" lang="en" title="このページの英語版">English</a></nav>
+<div class="search"><input id="q" type="search" placeholder="定理 29,511 件と定義ファイル 1,450 件を名前で検索…" autocomplete="off" spellcheck="false"><div id="q-results"></div></div>
+</div></header>
+<main class="prose">
+<article class="prose math-scope"><p class="muted small">リポジトリ直下の <code>README.md</code> の日本語訳。<a href="../../docs/readme.html" lang="en">原文（英語）</a>。</p><h1 id="fermats-last-theorem-in-lean-4">Lean 4 におけるフェルマーの最終定理</h1>
+<p><a href="https://github.com/leanprover-community/mathlib4">Mathlib</a> の上に構築された、<a href="https://lean-lang.org">Lean 4</a> による機械検証済みのフェルマーの最終定理の完全な証明です（Lean 4.33.1、Mathlib <code>v4.33.0</code>、<code>lakefile.lean</code> でコミットを固定）。議論は Frey・Serre・Ribet・Wiles・Taylor–Wiles のものです。<a href="../route/index.html#in-brief"><code>PROOF-PATH.md</code></a> は各ステップとそれを担う Lean の定理を挙げ、<code>html/</code> フォルダは証明全体をオフラインで閲覧できる Web ページとして提示します（下の「ブラウザで証明を読む」を参照）。</p>
+<p>研究用の成果物です。保守されておらず、貢献も受け付けていません。</p>
+<h2 id="the-statement">主張</h2>
+<p><a href="../../thm.html#fermat_last_theorem"><code>Theorems/Thm_fermat_last_theorem.lean</code></a> は</p>
+<pre class="lean"><span class="kn">theorem</span> fermat_last_theorem (n : ℕ) (hn : <span class="mi">3</span> ≤ n) (a b c : ℕ) (ha : <span class="mi">0</span> &lt; a) (hb : <span class="mi">0</span> &lt; b) (hc : <span class="mi">0</span> &lt; c) : a ^ n + b ^ n ≠ c ^ n
+</pre>
+<p>を宣言し、既定のビルド対象 <a href="../../../FinalCheck.lean"><code>FinalCheck.lean</code></a> は</p>
+<pre class="lean"><span class="sd">/-- info: &#39;fermat_last_theorem&#39; depends on axioms: [propext, Classical.choice, Quot.sound] -/</span>
+#guard_msgs <span class="k">in</span>
+#print axioms fermat_last_theorem
+</pre>
+<p>を含みます。したがって、証明が Lean の標準的な三つの公理だけに依存していなければビルドは失敗します（<code>sorry</code> なし、追加の <code>axiom</code> なし、<code>native_decide</code> なし）。<a href="../../../FinalCheck.lean"><code>FinalCheck.lean</code></a> はまた、この定理から Mathlib 自身の主張 <code>FermatLastTheorem</code> を導出します。</p>
+<h2 id="how-it-was-verified">どのように検証されたか</h2>
+<ul>
+<li><strong>ビルド。</strong>Lean 4.33.1（2026 年のカーネルの健全性修正を含む）上で、Mathlib をソースからコンパイルしつつ、ゼロから <code>lake build</code> を行いました。このリポジトリの 60,475 モジュールすべてがビルドされ、すべての宣言が Lean のカーネルによって検査され、公理は上記のとおりでした。</li>
+<li><strong>comparator。</strong><a href="https://github.com/leanprover/comparator">leanprover/comparator</a> <code>v4.33.0</code> が、Mathlib だけを使って定理を述べた <code>verification/comparator/Challenge.lean</code> に対してビルドを検査しました。証明された主張とそれが言及するすべての定数がチャレンジと同一であること、他の公理が使われていないこと、そして Mathlib を含む証明全体が Lean のカーネルで再生されることを確認しました。判定：<code>Your solution is okay!</code></li>
+<li><strong>第二のカーネル。</strong>Rust で書かれた独立の Lean カーネルである <a href="https://github.com/ammkrn/nanoda_lib">nanoda</a> 0.4.13 が、同じ環境のエクスポート（lean4export で書き出したもの）を受理しました：<code>Checked 1052234 declarations with no errors</code>。nanoda は自前の四つの小さなパッチ（<code>verification/nanoda/patches/</code>）を当ててビルドしました。一つは進捗出力を加えるもので、三つは定義的等価性の探索を高速化するものです。後者がないと、この証明のいくつかの宣言は無改変の nanoda を一つあたり何時間も占有します。どのパッチも型付け規則を追加・削除・弱体化しません。</li>
+</ul>
+<p>どのモジュールも <code>axiom</code>、<code>sorry</code>、<code>native_decide</code>、<code>unsafe</code>、<code>extern</code>、<code>implemented_by</code>、<code>partial def</code>、<code>#eval</code> を含みません（<code>Challenge.lean</code> は設計上 <code>sorry</code> を使いますが、パッケージの一部ではありません）。</p>
+<p>これらの検査を合わせると、Lean のカーネル（または nanoda）と検査ツールを信頼するかぎり、上の主張が三つの公理から従うことが確立されます。主張は Lean 組み込みの自然数、<code>+</code>、<code>≤</code>、<code>&lt;</code>、<code>≠</code> で書かれており、Mathlib 由来の唯一の材料は ℕ 上の <code>^</code> ですが、Mathlib はこれを Lean 組み込みの冪として定義しており、comparator は主張が言及するすべての定義が素の Mathlib のものと同一であることを検査します。Mathlib の他の部分を信頼する必要はありません。主張の下にあるすべてをカーネルが検査するからです。どのツールにも検査できないのは、各中間定理がその名前の示唆する意味をもつかどうかです。それは読者が判断することであり、<a href="../route/index.html#in-brief"><code>PROOF-PATH.md</code></a> は各ステップの背後にある Lean の定理を挙げ、名前のついた各古典的結果がここでどの程度の強さで証明されているかを正確に述べています。</p>
+<h2 id="reading-the-proof-in-a-browser">ブラウザで証明を読む</h2>
+<p><code>html/</code> フォルダ（約 390 MB）は、このリポジトリを静的な Web ページとして提示します。証明の道筋を一歩ずつ。29,511 個の定理それぞれのページ（Lean の正確な命題、引用するものと引用されるもの、展開できる依存グラフ）と、1,450 個の定義モジュールそれぞれのページ（全ソースと、それを使う命題）。すべての定理名・定義名にわたる検索ボックス。ランドマーク定理のグラフ。そして相互リンクつきで表示された <a href="../docs/readme.html"><code>README.md</code></a>、<a href="../route/index.html#in-brief"><code>PROOF-PATH.md</code></a>、<a href="../../docs/attribution.html"><code>ATTRIBUTION.md</code></a>。このフォルダはリポジトリの一部なので、クローンや ZIP ダウンロードにはすでに含まれています（<code>html/</code> を別のアーカイブとして入手した場合は、リポジトリの直下に展開してください）。<code>html/index.html</code> を Web ブラウザで開いてください。すべてオフラインで、Web サーバーなしで動きます。ページは Chromium 系ブラウザでのみ機械的にテストされており、<code>html/README-DOCS.md</code> が、何が Lean ファイルからの引用で何が生成されたものかを説明しています（英語の要約と参考文献の提案は自動生成されたもので、Lean の命題文が正です）。概要・証明の道筋・ランドマーク図・About の日本語版は <code>html/ja/index.html</code> にあります。</p>
+<h2 id="check-it-yourself">自分で検査する</h2>
+<ul>
+<li>Linux または macOS（Windows にはパスが長すぎるものがあります）、<a href="https://github.com/leanprover/elan">elan</a>（<code>lean-toolchain</code> から Lean 4.33.1 をインストールします）、そしてネットワーク接続が必要です。Lake は GitHub から Mathlib を取得してソースからコンパイルします。このツールチェインに合うビルド済み Mathlib がないためです（96 ジョブで約 13 分）。</li>
+<li>ビルドには並列ジョブあたり約 5 GB のメモリが必要です（いくつかのモジュールは最大 36 GB を要します）。<code>.lake/</code> の下に約 67 GB のディスク、加えてビルドの進行にあわせて削除できる C ファイル（約 220 GB）。我々のビルドは 96 ジョブで 5 時間 32 分、メモリのピークは 153 GB でした。</li>
+<li>comparator は約 15 時間かかり（我々の場合 14 時間 46 分）、そのほとんどは 1 コアでのカーネル再生です。メモリのピークは 230 GB だったので、300 GB を見込んでください。nanoda は comparator のスクリプトのあとに実行してください（そのツールを再利用します）。37.8 GB のエクスポートの書き出しには約 90 GB のメモリで 1 時間、検査自体は約 40 GB（16 スレッドで約 30 分）かかります。どちらのスクリプトも Linux 用です（bash、git、python3、GNU coreutils。nanoda はさらに <code>patch</code>、<code>cargo</code>、crates.io を必要とします）。</li>
+</ul>
+<pre><code>git clone &lt;this repository&gt; flt &amp;&amp; cd flt
+LEAN_NUM_THREADS=96 lake build              # 既定ではハードウェアスレッドごとに 1 ジョブ。メモリを抑えるには下げる（ジョブあたり約 5 GB）
+verification/comparator/run.sh              # 判定：.verify-work/wrapper/comparator.log の最終行
+verification/nanoda/run.sh                  # comparator のスクリプトのあとに実行。判定：.verify-work/nanoda/run-*/nanoda.stdout
+</code></pre>
+<p>Lean はビルド中に大量の非推奨警告とスタイルリンターの警告を出力します。結果には影響しません。出力が <code>'flt_mathlib' depends on axioms: [propext, Classical.choice, Quot.sound]</code> と <code>Build completed successfully</code> で終われば、ビルドは成功です。各スクリプトは固定されたバージョンの検査器を取得してビルドし、成功時に 0 で終了します。</p>
+<h2 id="about-the-sources">ソースについて</h2>
+<p><a href="../../../FinalCheck.lean"><code>FinalCheck.lean</code></a> が既定の対象です。<code>Theorems/</code> は命題を、<code>P2M/Sol/</code> は証明を（それぞれ引用する命題をインポートします）、<code>Definitions/</code> は定義を、<code>verification/</code> は二つの検査を、<code>html/</code> は上述の Web ページを、<code>tools/docs-site/</code> はそれを生成したプログラムを収めています。Lean ソースは、人間が書いたオープンソースの Lean の上に、Lean を裁定者として AI エージェントが構築したもので、読まれるためではなく検査されるために書かれています。名前は機械生成で、<code>P2M</code> や 16 進の接尾辞といったラベルは数学ではなくパイプラインのラベルであり、名前と命題が食い違うときは命題のほうが証明されたものです。上流の告知、doc string と引用（<a href="../../docs/attribution.html"><code>ATTRIBUTION.md</code></a> に列挙）、そして <code>#guard_msgs</code> が検査する期待出力のコメントを除き、コメントは削除されています。</p>
+<h2 id="licence-and-attribution">ライセンスと帰属表示</h2>
+<p>Copyright 2026 Anthropic, PBC。Apache License 2.0（<a href="../../../LICENSE"><code>LICENSE</code></a>）のもとで公開されています。一部は <a href="../../../NOTICE"><code>NOTICE</code></a> に記載された三つの Apache-2.0 プロジェクトに由来します。Kevin Buzzard が率いる <a href="https://github.com/ImperialCollegeLondon/FLT">Imperial College London の FLT プロジェクト</a>（Frey パッケージ、Galois 表現、変形理論、パッチングなど）、<a href="https://github.com/leanprover-community/flt-regular">flt-regular</a>（Kummer の定理）、そして Mathlib です。<a href="../../docs/attribution.html"><code>ATTRIBUTION.md</code></a> は、前二者の素材を含む 106 ファイルを上流のファイル・著作権者・著者とともに列挙し、また Mathlib のテキストを再現する 23 ファイル（<a href="../../def/Compat_Mathlib430.html"><code>Definitions/Def_Compat_Mathlib430.lean</code></a> の抜粋と、Mathlib の補題をその場で再証明する 22 モジュール）を列挙しています。Web ページは KaTeX と Graphviz（WebAssembly にコンパイル）をそれぞれのライセンスのもとで同梱しており、<code>html/assets/vendor/LICENSES.txt</code> に記載があります。Lean と <code>lake-manifest.json</code> のパッケージはビルド時に取得されるもので、ここでは配布していません。帰属表示のない素材に気づかれた場合、その欠落は意図的なものではありません。</p></article>
+
+</main>
+<footer>このリポジトリの Lean ソース（Lean v4.33.1, Mathlib v4.33.0）を解説するページ。命題文は .lean ファイルから逐語的に引用し、依存関係の辺は証明モジュールの <code>import Theorems.Thm_…</code> 行から取っている。定理・定義の個別ページは英語版のみ。<a href="../about.html">このページについて</a>。</footer>
+<script src="../../assets/hl.js"></script><script src="../../assets/site.js"></script>
+
+</body></html>

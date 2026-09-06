@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>このページについて · FLT in Lean 4（日本語）</title>
+<link rel="stylesheet" href="../assets/site.css"><link rel="stylesheet" href="../assets/vendor/katex/katex-embedded.css"><link rel="stylesheet" href="assets/ja.css">
+<script>window.FLT_ROOT = "../";</script>
+
+</head><body>
+<header class="top"><div class="inner">
+<a class="brand" href="index.html"><b>フェルマーの最終定理</b> in Lean 4</a>
+<nav><a href="index.html">概要</a><a href="route/index.html">証明の道筋</a><a href="dag/index.html">ランドマーク図</a><a href="../thm.html" title="英語版のページ">定理</a><a href="../areas/index.html" title="英語版のページ">分野</a><a href="../def/index.html" title="英語版のページ">定義</a><a href="docs/index.html">文書</a><a href="about.html" class="cur">このページについて</a><a href="../about.html" class="lang" lang="en" title="このページの英語版">English</a></nav>
+<div class="search"><input id="q" type="search" placeholder="定理 29,511 件と定義ファイル 1,450 件を名前で検索…" autocomplete="off" spellcheck="false"><div id="q-results"></div></div>
+</div></header>
+<main class="prose">
+<article class="prose math-scope"><h1>このページについて</h1>
+<p>このページ群は、このリポジトリの Lean ソース（Lean v4.33.1, Mathlib v4.33.0）を解説するものです。2026-09-03 に、<code>.lean</code> ファイルをテキストとして読むスクリプトによって生成されました。生成に Lean は実行していません。知っておくべき帰結は次のとおりです。</p>
+<ul>
+<li><b>命題文は逐語的な引用です。</b><code>Theorems/Thm_….lean</code> から（宣言の <code>:= by p2m_exact_reverting …</code> の手前まで）引用し、先頭のライセンスヘッダ、<code>import</code> 行、生成された <code>attribute [-instance] …</code> / <code>attribute [-simp] …</code> の前置きを取り除き、残った文脈行（<code>open</code>、<code>variable</code>、<code>universe</code>、<code>set_option</code>、局所記法）を命題の上に示しています。Lean によって整形出力されたものではないので、記法はファイルに書かれたとおりです。</li>
+<li><b>辺はインポートです。</b>「T が U を引用する」とは、証明モジュール <code>P2M/Sol/S_T.lean</code> に <code>import Theorems.Thm_U</code> の行があることです。木の構成上これらは証明が使う定理ですが、インポートは論理的依存の上界にすぎません。106,853 本の引用の辺のうち 2,890 本（2.7%）では、引用された定理の名前がインポートする側の証明の中にテキストとして現れません（インスタンスや記法を通じて使われているかもしれませんし、まったく使われていないかもしれません）。定理ページではそのような引用に印をつけています。</li>
+<li><b>「T の下位」</b>は、リポジトリの文書と同じく、T の証明モジュールのインポート閉包に含まれる相異なる定理の数です。<b>深さ</b>は <code>fermat_last_theorem</code> からの最短引用経路の長さで、29,511 個の定理のうち 29,489 個がこれをもちます。残りの 22 個は主定理の引用閉包の外にあります。19 個はどの証明からも引用されず、それをインポートする定義モジュール（またはそれに言及する命題）を通じて到達され、残りの 3 個はそれらを通じてのみ到達されます。その経路の表示にはそのように書いてあります。</li>
+<li><b>証明のサイズ</b>は、証明モジュールからインポート行と前置きを除いた行数です。<b>補助補題</b>は、証明モジュール内の <code>solution</code> 以外の <code>theorem</code>/<code>lemma</code> 宣言の数です。補助補題はファイル内に閉じた機械命名のもので、ライブラリの補題として提示するものではありません。</li>
+<li><b>ランドマーク</b>は、<code>PROOF-PATH.md</code> または<a href="route/index.html">証明の道筋</a>の各章で名前の挙がる 49 個の定理です。それ以外の定理ページに表示されるステップ（「under: …」）は、最短経路を一つ上にたどって最初に出会うランドマークのステップです。これは読むための補助であって、分類ではありません。</li>
+<li><b>命題中の識別子リンク</b>は、定義モジュールの宣言に対してテキストとして解決されます。完全修飾名の完全一致、命題の <code>open</code> 行や自身の名前空間で補完できる非修飾名または部分修飾名、あるいはフィールド記法 <code>x.foo</code> でその接尾辞が可視な名前空間内でちょうど一つのプロジェクト定数を指すもの、のいずれかです。リンクのない名前は Mathlib のもの、束縛変数、または規則が推測を控えたものです。</li>
+<li><b>Lean 4.33 への移植。</b>木を Lean 4.30 から 4.33 に移すとき、28 個の命題ファイルが手で編集され、52 個が <code>Def_Compat_Mathlib430</code> をインポートしています。それらのページにはその旨のバッジがあります。スクリプトによるトークンの改名（例：<code>ramificationIdx</code> → <code>ramificationIdx'</code>）だけで変わった 1,366 個の命題にはバッジをつけていません。</li>
+<li>英語のタイトル、非形式的な命題、証明のアイデア、背景説明の段落（すべての定理ページとすべての定義モジュールページにあります）は、Lean ファイルの外に置かれた編集上の追加です。同じページにある Lean の命題が、証明されたものです。そのようなページには <i>English text generated automatically from the Lean source; the Lean statement is authoritative.</i>（英語の文章は Lean ソースから自動生成されたもので、Lean の命題文が正である）という注記があります。その英語の文章中の数式は、同梱の KaTeX によってブラウザ内で組版されます。スクリプトが無効なとき、あるいは数式が解析できないときは、代わりに TeX ソースが表示されます。参考文献は自動的に提案されたもので、個別には検証されていません。</li>
+<li>すべてが証明済みです。予想や未完成のノードはないので、グラフは一色で描かれています。角の折れた箱は定義モジュールです。</li>
+</ul>
+<h2>この日本語版について</h2>
+<p><code>html/ja/</code> の下にあるのは、概要、証明の道筋（§1〜§7 と <code>PROOF-PATH.md</code> の要約）、ランドマーク図、文書の索引と README、そしてこのページの日本語訳です。英語版と同じデータ、同じ図、同じ定理カードを使い、Lean の命題文と図のラベルは英語版のまま流用しています。定理ページ（<code>thm.html</code>）、定義ページ、分野ページと検索結果は英語版のみで、日本語ページからのリンクはそれらの英語ページに向かいます。日本語の散文は英語の散文を訳したものであり、英語版と Lean が食い違うときは Lean が正しいのと同様に、日本語版と英語版が食い違うときは英語版が、そして何より Lean が正です。各ページ右上の「English」で対応する英語ページに移れます。</p>
+<h2>フォルダの使い方</h2>
+<p><code>html/index.html</code>（英語）または <code>html/ja/index.html</code>（日本語）をブラウザで開いてください。サーバーは不要で、ネットワークから何も取得しません。リンクはすべて相対パスです。<code>.lean</code> ソースファイルへのリンクは、このフォルダがリポジトリの直下（<code>Theorems/</code>、<code>P2M/</code>、<code>Definitions/</code> の隣）にあることを前提としています。それ以外はフォルダがどこにあっても動きます。対話的な近傍グラフは WebAssembly にコンパイルした Graphviz（同梱）を使います。ブラウザがローカルファイルからの実行を拒否した場合、ページにその旨が表示され、一覧が同じ情報を担います。Chromium 系のブラウザでテストしました。ページは古くからある Web の機能（クラシックスクリプト、SVG。モジュールやネットワーク要求は使いません）だけを用いているので、Firefox や Safari でもディスクから同じように動くはずです。</p>
+<h2>第三者の素材</h2>
+<p>グラフのレイアウト：@hpcc-js/wasm 経由の Graphviz（Apache-2.0）。数式の組版：KaTeX（MIT。フォントは SIL OFL 1.1）。ライセンス本文は <code>assets/vendor/</code> にあります。Lean ファイル自体の帰属表示は <a href="../docs/attribution.html">ATTRIBUTION.md</a>（英語）にあります。</p>
+</article>
+
+</main>
+<footer>このリポジトリの Lean ソース（Lean v4.33.1, Mathlib v4.33.0）を解説するページ。命題文は .lean ファイルから逐語的に引用し、依存関係の辺は証明モジュールの <code>import Theorems.Thm_…</code> 行から取っている。定理・定義の個別ページは英語版のみ。<a href="about.html">このページについて</a>。</footer>
+<script src="../assets/hl.js"></script><script src="../assets/site.js"></script>
+
+</body></html>

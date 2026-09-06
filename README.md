@@ -64,7 +64,8 @@ already contains it (if you obtained `html/` as a separate archive, unpack it at
 `html/index.html` in a web browser; everything works offline, with no web server. The pages were machine-tested in a
 Chromium-based browser only, and `html/README-DOCS.md` explains what is quoted from the Lean files and what is
 generated (the English summaries and suggested references are generated automatically; the Lean statement is
-authoritative).
+authoritative). A Japanese version of the overview, the route chapters, the landmark graph, the documents index and
+these notes is at `html/ja/index.html`; the theorem and definition pages themselves are English only.
 
 ## Check it yourself
 
