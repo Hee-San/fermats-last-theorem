@@ -5,6 +5,7 @@
   var main = document.getElementById("thm-main");
   function byHash() {
     var h = decodeURIComponent((window.location.hash || "").replace(/^#/, ""));
+    var ll = document.getElementById("lang-link"); if (ll) ll.href = "ja/thm.html" + (window.location.hash || "");
     FLT.withMeta(function (err) {
       if (err || !FLT.M) { main.innerHTML = '<p class="warn">Could not load the site data (data/meta.js). If you moved thm.html out of the html/ folder, put it back next to data/.</p>'; return; }
       if (!h) { renderLanding(); return; }

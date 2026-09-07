@@ -7,14 +7,14 @@
 </head><body>
 <header class="top"><div class="inner">
 <a class="brand" href="index.html"><b>フェルマーの最終定理</b> in Lean 4</a>
-<nav><a href="index.html" class="cur">概要</a><a href="route/index.html">証明の道筋</a><a href="dag/index.html">ランドマーク図</a><a href="../thm.html" title="英語版のページ">定理</a><a href="../areas/index.html" title="英語版のページ">分野</a><a href="../def/index.html" title="英語版のページ">定義</a><a href="docs/index.html">文書</a><a href="about.html">このページについて</a><a href="../index.html" class="lang" lang="en" title="このページの英語版">English</a></nav>
+<nav><a href="index.html" class="cur">概要</a><a href="route/index.html">証明の道筋</a><a href="dag/index.html">ランドマーク図</a><a href="thm.html">定理</a><a href="../areas/index.html" title="英語版のページ">分野</a><a href="../def/index.html" title="英語版のページ">定義</a><a href="docs/index.html">文書</a><a href="about.html">このページについて</a><a href="../index.html" class="lang" lang="en" title="このページの英語版">English</a></nav>
 <div class="search"><input id="q" type="search" placeholder="定理 29,511 件と定義ファイル 1,450 件を名前で検索…" autocomplete="off" spellcheck="false"><div id="q-results"></div></div>
 </div></header>
 <main class="">
 <article class="prose math-scope">
 <div class="hero"><div class="stmt">
 <h1>Lean 4 で証明されたフェルマーの最終定理</h1>
-<p class="muted">この証明の木を読むための案内です。何が証明されたのか、どの道筋で証明されたのか、そして 29,511 個の定理がどのようにつながっているのかを説明します。定理名はどれも、その定理の Lean 上の正確な命題、引用している定理、引用されている先、主定理の下での位置を示すページへのリンクです（定理・定義の個別ページは英語版のみです）。</p>
+<p class="muted">この証明の木を読むための案内です。何が証明されたのか、どの道筋で証明されたのか、そして 29,511 個の定理がどのようにつながっているのかを説明します。定理名はどれも、その定理の Lean 上の正確な命題、引用している定理、引用されている先、主定理の下での位置を示すページへのリンクです。49 件の<a href="dag/index.html">ランドマーク定理</a>は非形式的な解説も日本語に翻訳されています。それ以外の定理と、定義・分野の個別ページは英語版のみです。</p>
 <pre class="lean"><span class="kn">theorem</span> fermat_last_theorem (n : ℕ) (hn : <span class="mi">3</span> ≤ n) (a b c : ℕ) (ha : <span class="mi">0</span> &lt; a) (hb : <span class="mi">0</span> &lt; b) (hc : <span class="mi">0</span> &lt; c) : a ^ n + b ^ n ≠ c ^ n
 </pre>
 <p class="small">既定のビルド対象 <a href="../../FinalCheck.lean"><code>FinalCheck.lean</code></a> は、証明が Lean の標準的な三つの公理だけに依存していなければビルドを失敗させます。</p>
@@ -22,7 +22,7 @@
 #guard_msgs <span class="k">in</span>
 #print axioms fermat_last_theorem
 </pre>
-<p><a class="badge root" href="../thm.html#fermat_last_theorem">この定理のページを開く →</a> <a class="badge" href="route/index.html">証明の道筋を一歩ずつ</a> <a class="badge" href="dag/index.html">ランドマーク図</a> <a class="badge" href="docs/readme.html">README（日本語訳）</a></p>
+<p><a class="badge root" href="thm.html#fermat_last_theorem">この定理のページを開く →</a> <a class="badge" href="route/index.html">証明の道筋を一歩ずつ</a> <a class="badge" href="dag/index.html">ランドマーク図</a> <a class="badge" href="docs/readme.html">README（日本語訳）</a></p>
 </div>
 <div><div class="figure"><svg width="757pt" height="657pt"
  viewBox="0.00 0.00 757.21 657.08" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -32,7 +32,7 @@
 <g id="node1" class="node">
 <title>n0</title>
 <path fill="#2f7d55" stroke="#1e5c3c" stroke-width="1.6" d="M354.78,-36C354.78,-36 199.12,-36 199.12,-36 193.12,-36 187.12,-30 187.12,-24 187.12,-24 187.12,-12 187.12,-12 187.12,-6 193.12,0 199.12,0 199.12,0 354.78,0 354.78,0 360.78,0 366.78,-6 366.78,-12 366.78,-12 366.78,-24 366.78,-24 366.78,-30 360.78,-36 354.78,-36"/>
-<g id="a_node1_0"><a xlink:href="../thm.html#fermat_last_theorem" xlink:title="fermat_last_theorem">
+<g id="a_node1_0"><a xlink:href="thm.html#fermat_last_theorem" xlink:title="fermat_last_theorem">
 <text text-anchor="start" x="198.2" y="-13.32" font-family="Helvetica,sans-Serif" font-size="14.00" fill="#ffffff">Fermat&#39;s Last Theorem</text>
 </a>
 </g>
@@ -41,7 +41,7 @@
 <g id="node2" class="node">
 <title>n1</title>
 <path fill="#e6f2ea" stroke="#6fa287" stroke-width="1.2" d="M354.78,-184.07C354.78,-184.07 199.12,-184.07 199.12,-184.07 193.12,-184.07 187.12,-178.07 187.12,-172.07 187.12,-172.07 187.12,-130.8 187.12,-130.8 187.12,-124.8 193.12,-118.8 199.12,-118.8 199.12,-118.8 354.78,-118.8 354.78,-118.8 360.78,-118.8 366.78,-124.8 366.78,-130.8 366.78,-130.8 366.78,-172.07 366.78,-172.07 366.78,-178.07 360.78,-184.07 354.78,-184.07"/>
-<g id="a_node2_1"><a xlink:href="../thm.html#FLT.fermatLastTheorem" xlink:title="FLT.fermatLastTheorem">
+<g id="a_node2_1"><a xlink:href="thm.html#FLT.fermatLastTheorem" xlink:title="FLT.fermatLastTheorem">
 <text text-anchor="start" x="198.2" y="-164.01" font-family="Helvetica,sans-Serif" font-size="14.00" fill="#1f3b2c">Fermat&#39;s Last Theorem</text>
 <text text-anchor="start" x="243.2" y="-146.76" font-family="Helvetica,sans-Serif" font-size="14.00" fill="#1f3b2c">(Mathlib&#39;s</text>
 <text text-anchor="start" x="234.58" y="-129.51" font-family="Helvetica,sans-Serif" font-size="14.00" fill="#1f3b2c">formulation)</text>
@@ -65,7 +65,7 @@
 <g id="node3" class="node">
 <title>n2</title>
 <path fill="#e6f2ea" stroke="#6fa287" stroke-width="1.2" d="M354.78,-332.14C354.78,-332.14 199.12,-332.14 199.12,-332.14 193.12,-332.14 187.12,-326.14 187.12,-320.14 187.12,-320.14 187.12,-278.87 187.12,-278.87 187.12,-272.87 193.12,-266.87 199.12,-266.87 199.12,-266.87 354.78,-266.87 354.78,-266.87 360.78,-266.87 366.78,-272.87 366.78,-278.87 366.78,-278.87 366.78,-320.14 366.78,-320.14 366.78,-326.14 360.78,-332.14 354.78,-332.14"/>
-<g id="a_node3_2"><a xlink:href="../thm.html#FreyPackage.fermatLastTheoremFor_of_five_le" xlink:title="FreyPackage.fermatLastTheoremFor_of_five_le">
+<g id="a_node3_2"><a xlink:href="thm.html#FreyPackage.fermatLastTheoremFor_of_five_le" xlink:title="FreyPackage.fermatLastTheoremFor_of_five_le">
 <text text-anchor="start" x="198.2" y="-312.08" font-family="Helvetica,sans-Serif" font-size="14.00" fill="#1f3b2c">Fermat&#39;s Last Theorem</text>
 <text text-anchor="start" x="199.33" y="-294.83" font-family="Helvetica,sans-Serif" font-size="14.00" fill="#1f3b2c">for prime exponents p</text>
 <text text-anchor="start" x="264.2" y="-277.58" font-family="Helvetica,sans-Serif" font-size="14.00" fill="#1f3b2c">≥ 5</text>
@@ -89,7 +89,7 @@
 <g id="node4" class="node">
 <title>n3</title>
 <path fill="#e6f2ea" stroke="#6fa287" stroke-width="1.2" d="M249.16,-480.21C249.16,-480.21 110.75,-480.21 110.75,-480.21 104.75,-480.21 98.75,-474.21 98.75,-468.21 98.75,-468.21 98.75,-426.94 98.75,-426.94 98.75,-420.94 104.75,-414.94 110.75,-414.94 110.75,-414.94 249.16,-414.94 249.16,-414.94 255.16,-414.94 261.16,-420.94 261.16,-426.94 261.16,-426.94 261.16,-468.21 261.16,-468.21 261.16,-474.21 255.16,-480.21 249.16,-480.21"/>
-<g id="a_node4_3"><a xlink:href="../thm.html#FreyPackage.of_counterexample" xlink:title="FreyPackage.of_counterexample">
+<g id="a_node4_3"><a xlink:href="thm.html#FreyPackage.of_counterexample" xlink:title="FreyPackage.of_counterexample">
 <text text-anchor="start" x="109.83" y="-460.15" font-family="Helvetica,sans-Serif" font-size="14.00" fill="#1f3b2c">Frey package from a</text>
 <text text-anchor="start" x="115.08" y="-442.9" font-family="Helvetica,sans-Serif" font-size="14.00" fill="#1f3b2c">counterexample of</text>
 <text text-anchor="start" x="125.58" y="-425.65" font-family="Helvetica,sans-Serif" font-size="14.00" fill="#1f3b2c">exponent p ≥ 5</text>
@@ -113,7 +113,7 @@
 <g id="node5" class="node">
 <title>n4</title>
 <path fill="#e6f2ea" stroke="#6fa287" stroke-width="1.2" d="M452.53,-465.57C452.53,-465.57 295.38,-465.57 295.38,-465.57 289.38,-465.57 283.38,-459.57 283.38,-453.57 283.38,-453.57 283.38,-441.57 283.38,-441.57 283.38,-435.57 289.38,-429.57 295.38,-429.57 295.38,-429.57 452.53,-429.57 452.53,-429.57 458.53,-429.57 464.53,-435.57 464.53,-441.57 464.53,-441.57 464.53,-453.57 464.53,-453.57 464.53,-459.57 458.53,-465.57 452.53,-465.57"/>
-<g id="a_node5_4"><a xlink:href="../thm.html#FreyPackage.no_frey_package" xlink:title="FreyPackage.no_frey_package">
+<g id="a_node5_4"><a xlink:href="thm.html#FreyPackage.no_frey_package" xlink:title="FreyPackage.no_frey_package">
 <text text-anchor="start" x="294.45" y="-442.9" font-family="Helvetica,sans-Serif" font-size="14.00" fill="#1f3b2c">No Frey package exists</text>
 </a>
 </g>
@@ -127,7 +127,7 @@
 <g id="node6" class="node">
 <title>n5</title>
 <path fill="#e6f2ea" stroke="#6fa287" stroke-width="1.2" d="M163.91,-628.28C163.91,-628.28 12,-628.28 12,-628.28 6,-628.28 0,-622.28 0,-616.28 0,-616.28 0,-575.01 0,-575.01 0,-569.01 6,-563.01 12,-563.01 12,-563.01 163.91,-563.01 163.91,-563.01 169.91,-563.01 175.91,-569.01 175.91,-575.01 175.91,-575.01 175.91,-616.28 175.91,-616.28 175.91,-622.28 169.91,-628.28 163.91,-628.28"/>
-<g id="a_node6_5"><a xlink:href="../thm.html#FreyPackage.Mazur_Frey" xlink:title="FreyPackage.Mazur_Frey">
+<g id="a_node6_5"><a xlink:href="thm.html#FreyPackage.Mazur_Frey" xlink:title="FreyPackage.Mazur_Frey">
 <text text-anchor="start" x="22.33" y="-608.22" font-family="Helvetica,sans-Serif" font-size="14.00" fill="#1f3b2c">Irreducibility of the</text>
 <text text-anchor="start" x="11.08" y="-590.97" font-family="Helvetica,sans-Serif" font-size="14.00" fill="#1f3b2c">mod&#45;p torsion module</text>
 <text text-anchor="start" x="29.45" y="-573.72" font-family="Helvetica,sans-Serif" font-size="14.00" fill="#1f3b2c">of the Frey curve</text>
@@ -151,7 +151,7 @@
 <g id="node7" class="node">
 <title>n6</title>
 <path fill="#e6f2ea" stroke="#6fa287" stroke-width="1.2" d="M359.78,-619.65C359.78,-619.65 210.12,-619.65 210.12,-619.65 204.12,-619.65 198.12,-613.65 198.12,-607.65 198.12,-607.65 198.12,-583.63 198.12,-583.63 198.12,-577.63 204.12,-571.63 210.12,-571.63 210.12,-571.63 359.78,-571.63 359.78,-571.63 365.78,-571.63 371.78,-577.63 371.78,-583.63 371.78,-583.63 371.78,-607.65 371.78,-607.65 371.78,-613.65 365.78,-619.65 359.78,-619.65"/>
-<g id="a_node7_6"><a xlink:href="../thm.html#FreyPackage.frey_isModular" xlink:title="FreyPackage.frey_isModular">
+<g id="a_node7_6"><a xlink:href="thm.html#FreyPackage.frey_isModular" xlink:title="FreyPackage.frey_isModular">
 <text text-anchor="start" x="209.2" y="-599.59" font-family="Helvetica,sans-Serif" font-size="14.00" fill="#1f3b2c">Modularity of the Frey</text>
 <text text-anchor="start" x="265.45" y="-582.34" font-family="Helvetica,sans-Serif" font-size="14.00" fill="#1f3b2c">curve</text>
 </a>
@@ -166,7 +166,7 @@
 <g id="node8" class="node">
 <title>n7</title>
 <path fill="#e6f2ea" stroke="#6fa287" stroke-width="1.2" d="M521.91,-628.28C521.91,-628.28 406,-628.28 406,-628.28 400,-628.28 394,-622.28 394,-616.28 394,-616.28 394,-575.01 394,-575.01 394,-569.01 400,-563.01 406,-563.01 406,-563.01 521.91,-563.01 521.91,-563.01 527.91,-563.01 533.91,-569.01 533.91,-575.01 533.91,-575.01 533.91,-616.28 533.91,-616.28 533.91,-622.28 527.91,-628.28 521.91,-628.28"/>
-<g id="a_node8_7"><a xlink:href="../thm.html#FreyPackage.level_lowering_to_two" xlink:title="FreyPackage.level_lowering_to_two">
+<g id="a_node8_7"><a xlink:href="thm.html#FreyPackage.level_lowering_to_two" xlink:title="FreyPackage.level_lowering_to_two">
 <text text-anchor="start" x="405.08" y="-608.22" font-family="Helvetica,sans-Serif" font-size="14.00" fill="#1f3b2c">Level lowering to</text>
 <text text-anchor="start" x="405.83" y="-590.97" font-family="Helvetica,sans-Serif" font-size="14.00" fill="#1f3b2c">Γ₀(2) for the Frey</text>
 <text text-anchor="start" x="444.45" y="-573.72" font-family="Helvetica,sans-Serif" font-size="14.00" fill="#1f3b2c">curve</text>
@@ -182,7 +182,7 @@
 <g id="node9" class="node">
 <title>n8</title>
 <path fill="#e6f2ea" stroke="#6fa287" stroke-width="1.2" d="M716.41,-619.65C716.41,-619.65 567.5,-619.65 567.5,-619.65 561.5,-619.65 555.5,-613.65 555.5,-607.65 555.5,-607.65 555.5,-583.63 555.5,-583.63 555.5,-577.63 561.5,-571.63 567.5,-571.63 567.5,-571.63 716.41,-571.63 716.41,-571.63 722.41,-571.63 728.41,-577.63 728.41,-583.63 728.41,-583.63 728.41,-607.65 728.41,-607.65 728.41,-613.65 722.41,-619.65 716.41,-619.65"/>
-<g id="a_node9_8"><a xlink:href="../thm.html#ModularForm.S2_Gamma0_2_eq_zero" xlink:title="ModularForm.S2_Gamma0_2_eq_zero">
+<g id="a_node9_8"><a xlink:href="thm.html#ModularForm.S2_Gamma0_2_eq_zero" xlink:title="ModularForm.S2_Gamma0_2_eq_zero">
 <text text-anchor="start" x="566.58" y="-599.59" font-family="Helvetica,sans-Serif" font-size="14.00" fill="#1f3b2c">Vanishing of weight&#45;2</text>
 <text text-anchor="start" x="569.2" y="-582.34" font-family="Helvetica,sans-Serif" font-size="14.00" fill="#1f3b2c">cusp forms of level 2</text>
 </a>
@@ -232,12 +232,12 @@
 <li><b>定義ページ</b>（英語）は各 <code>Definitions/Def_….lean</code> を全文表示し、その宣言の索引と、それを使う命題の一覧を添えています。</li>
 <li><a href="docs/index.html">文書</a>はリポジトリの散文（README と帰属表示。<code>PROOF-PATH.md</code> は<a href="route/index.html">証明の道筋</a>で開きます）で、書かれたとおりに表示されます。<a href="about.html">このページについて</a>にはファイルの規約（<code>Thm_</code>/<code>S_</code>/<code>Def_</code>、<code>p2m_exact_reverting</code>、<code>attribute [-instance]</code> の前置き）が書いてあります。</li>
 <li>文書での用語の約束：<i>証明済み</i>とは常に、引用したとおりの型が <code>propext</code>・<code>Classical.choice</code>・<code>Quot.sound</code> からカーネルで検査された証明をもつことを意味し、同じ名前の古典的定理が通常の一般性で成り立つことを意味しません。<i>T の下位</i>とは、T の証明モジュールのインポート閉包に含まれることです。</li>
-<li>この日本語版について：概要・証明の道筋・ランドマーク図・文書・「このページについて」を日本語にしたものです。図の中のラベル、定理カードの英語タイトル、検索結果、定理・定義の個別ページは英語のままです。各ページ右上の「English」から英語版に移れます。</li>
+<li>この日本語版について：概要・証明の道筋・ランドマーク図・文書・「このページについて」を日本語にしたものです。<a href="thm.html">定理のページ</a>は、49 件のランドマーク定理(非形式的な命題・証明のアイデア・背景説明)を日本語に翻訳しており、それ以外の定理はページの土台(Lean の命題文・引用関係・近傍グラフ)を日本語で、非形式的な解説を英語のまま表示します。図の中のラベル、定理カードの英語タイトル、検索結果、定義・分野の個別ページは英語のままです。各ページ右上の「English」から英語版に移れます。</li>
 </ul>
 </article>
 
 </main>
-<footer>このリポジトリの Lean ソース（Lean v4.33.1, Mathlib v4.33.0）を解説するページ。命題文は .lean ファイルから逐語的に引用し、依存関係の辺は証明モジュールの <code>import Theorems.Thm_…</code> 行から取っている。定理・定義の個別ページは英語版のみ。<a href="about.html">このページについて</a>。</footer>
+<footer>このリポジトリの Lean ソース（Lean v4.33.1, Mathlib v4.33.0）を解説するページ。命題文は .lean ファイルから逐語的に引用し、依存関係の辺は証明モジュールの <code>import Theorems.Thm_…</code> 行から取っている。<a href="thm.html">49 件のランドマーク定理</a>は本文が日本語に翻訳されており、それ以外の定理・定義の個別ページは英語版のみ。<a href="about.html">このページについて</a>。</footer>
 <script src="../assets/hl.js"></script><script src="../assets/site.js"></script>
 
 </body></html>
