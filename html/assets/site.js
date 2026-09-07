@@ -380,6 +380,25 @@
       b.addEventListener("click", function () { var t = b.getAttribute("data-copy") || ""; FLT.copyText(t, function () { b.textContent = "copied"; setTimeout(function () { b.textContent = "copy"; }, 1200); }, function () { }); });
     });
   };
+  // ---------- links to the Lean sources when served by GitHub Pages ----------
+  // Links to Theorems/…, P2M/…, Definitions/…, FinalCheck.lean, LICENSE and NOTICE are relative to the repository root and
+  // work when html/ sits there. When the folder is served on its own by GitHub Pages (https://<owner>.github.io/<repo>/…),
+  // point them at the same files in the repository on github.com; nothing is fetched unless a link is clicked.
+  // Elsewhere (file://, any other host) this is a no-op. window.FLT_REPO = "https://github.com/<owner>/<repo>/blob/<ref>/" overrides.
+  var REPO_FILE = /^(?:\.\.\/)+((?:Theorems|P2M|Definitions)\/[^#?]*\.lean|FinalCheck\.lean|LICENSE|NOTICE|lakefile\.lean|lake-manifest\.json|lean-toolchain)$/;
+  FLT.repoUrl = (function () {
+    if (window.FLT_REPO) return window.FLT_REPO;
+    var m = /^([^.]+)\.github\.io$/i.exec(window.location.hostname || ""), seg = (window.location.pathname || "").split("/")[1];
+    return m && seg && seg.indexOf(".") < 0 ? "https://github.com/" + m[1] + "/" + seg + "/blob/HEAD/" : null;
+  })();
+  FLT.fixRepoLinks = function (root) {
+    if (!FLT.repoUrl) return;
+    (root || document).querySelectorAll("a[href]").forEach(function (a) {
+      var m = REPO_FILE.exec(a.getAttribute("href") || ""); if (!m) return;
+      a.href = FLT.repoUrl + m[1]; a.classList.add("ext");
+      a.title = "external link: this file in the repository on github.com (the html/ folder is served without the Lean sources); nothing is fetched unless you click";
+    });
+  };
   // ---------- page furniture ----------
   FLT.initPage = function () {
     FLT.initSearch($("#q"), $("#q-results"));
@@ -388,6 +407,7 @@
       f.addEventListener("click", function (ev) { if (ev.target.closest && ev.target.closest("a")) return; f.classList.toggle("zoomed"); });
     });
     FLT.wireCopyButtons(document);
+    FLT.fixRepoLinks(document);
   };
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", FLT.initPage); else FLT.initPage();
 })();
