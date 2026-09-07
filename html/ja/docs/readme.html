@@ -7,7 +7,7 @@
 </head><body>
 <header class="top"><div class="inner">
 <a class="brand" href="../index.html"><b>フェルマーの最終定理</b> in Lean 4</a>
-<nav><a href="../index.html">概要</a><a href="../route/index.html">証明の道筋</a><a href="../dag/index.html">ランドマーク図</a><a href="../../thm.html" title="英語版のページ">定理</a><a href="../../areas/index.html" title="英語版のページ">分野</a><a href="../../def/index.html" title="英語版のページ">定義</a><a href="../docs/index.html" class="cur">文書</a><a href="../about.html">このページについて</a><a href="../../docs/readme.html" class="lang" lang="en" title="このページの英語版">English</a></nav>
+<nav><a href="../index.html">概要</a><a href="../route/index.html">証明の道筋</a><a href="../dag/index.html">ランドマーク図</a><a href="../thm.html">定理</a><a href="../../areas/index.html" title="英語版のページ">分野</a><a href="../../def/index.html" title="英語版のページ">定義</a><a href="../docs/index.html" class="cur">文書</a><a href="../about.html">このページについて</a><a href="../../docs/readme.html" class="lang" lang="en" title="このページの英語版">English</a></nav>
 <div class="search"><input id="q" type="search" placeholder="定理 29,511 件と定義ファイル 1,450 件を名前で検索…" autocomplete="off" spellcheck="false"><div id="q-results"></div></div>
 </div></header>
 <main class="prose">
@@ -15,7 +15,7 @@
 <p><a href="https://github.com/leanprover-community/mathlib4">Mathlib</a> の上に構築された、<a href="https://lean-lang.org">Lean 4</a> による機械検証済みのフェルマーの最終定理の完全な証明です（Lean 4.33.1、Mathlib <code>v4.33.0</code>、<code>lakefile.lean</code> でコミットを固定）。議論は Frey・Serre・Ribet・Wiles・Taylor–Wiles のものです。<a href="../route/index.html#in-brief"><code>PROOF-PATH.md</code></a> は各ステップとそれを担う Lean の定理を挙げ、<code>html/</code> フォルダは証明全体をオフラインで閲覧できる Web ページとして提示します（下の「ブラウザで証明を読む」を参照）。</p>
 <p>研究用の成果物です。保守されておらず、貢献も受け付けていません。</p>
 <h2 id="the-statement">主張</h2>
-<p><a href="../../thm.html#fermat_last_theorem"><code>Theorems/Thm_fermat_last_theorem.lean</code></a> は</p>
+<p><a href="../thm.html#fermat_last_theorem"><code>Theorems/Thm_fermat_last_theorem.lean</code></a> は</p>
 <pre class="lean"><span class="kn">theorem</span> fermat_last_theorem (n : ℕ) (hn : <span class="mi">3</span> ≤ n) (a b c : ℕ) (ha : <span class="mi">0</span> &lt; a) (hb : <span class="mi">0</span> &lt; b) (hc : <span class="mi">0</span> &lt; c) : a ^ n + b ^ n ≠ c ^ n
 </pre>
 <p>を宣言し、既定のビルド対象 <a href="../../../FinalCheck.lean"><code>FinalCheck.lean</code></a> は</p>
@@ -52,7 +52,7 @@ verification/nanoda/run.sh                  # comparator のスクリプトの�
 <p>Copyright 2026 Anthropic, PBC。Apache License 2.0（<a href="../../../LICENSE"><code>LICENSE</code></a>）のもとで公開されています。一部は <a href="../../../NOTICE"><code>NOTICE</code></a> に記載された三つの Apache-2.0 プロジェクトに由来します。Kevin Buzzard が率いる <a href="https://github.com/ImperialCollegeLondon/FLT">Imperial College London の FLT プロジェクト</a>（Frey パッケージ、Galois 表現、変形理論、パッチングなど）、<a href="https://github.com/leanprover-community/flt-regular">flt-regular</a>（Kummer の定理）、そして Mathlib です。<a href="../../docs/attribution.html"><code>ATTRIBUTION.md</code></a> は、前二者の素材を含む 106 ファイルを上流のファイル・著作権者・著者とともに列挙し、また Mathlib のテキストを再現する 23 ファイル（<a href="../../def/Compat_Mathlib430.html"><code>Definitions/Def_Compat_Mathlib430.lean</code></a> の抜粋と、Mathlib の補題をその場で再証明する 22 モジュール）を列挙しています。Web ページは KaTeX と Graphviz（WebAssembly にコンパイル）をそれぞれのライセンスのもとで同梱しており、<code>html/assets/vendor/LICENSES.txt</code> に記載があります。Lean と <code>lake-manifest.json</code> のパッケージはビルド時に取得されるもので、ここでは配布していません。帰属表示のない素材に気づかれた場合、その欠落は意図的なものではありません。</p></article>
 
 </main>
-<footer>このリポジトリの Lean ソース（Lean v4.33.1, Mathlib v4.33.0）を解説するページ。命題文は .lean ファイルから逐語的に引用し、依存関係の辺は証明モジュールの <code>import Theorems.Thm_…</code> 行から取っている。定理・定義の個別ページは英語版のみ。<a href="../about.html">このページについて</a>。</footer>
+<footer>このリポジトリの Lean ソース（Lean v4.33.1, Mathlib v4.33.0）を解説するページ。命題文は .lean ファイルから逐語的に引用し、依存関係の辺は証明モジュールの <code>import Theorems.Thm_…</code> 行から取っている。<a href="../thm.html">49 件のランドマーク定理</a>は本文が日本語に翻訳されており、それ以外の定理・定義の個別ページは英語版のみ。<a href="../about.html">このページについて</a>。</footer>
 <script src="../../assets/hl.js"></script><script src="../../assets/site.js"></script>
 
 </body></html>

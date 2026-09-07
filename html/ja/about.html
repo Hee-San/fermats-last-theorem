@@ -7,7 +7,7 @@
 </head><body>
 <header class="top"><div class="inner">
 <a class="brand" href="index.html"><b>フェルマーの最終定理</b> in Lean 4</a>
-<nav><a href="index.html">概要</a><a href="route/index.html">証明の道筋</a><a href="dag/index.html">ランドマーク図</a><a href="../thm.html" title="英語版のページ">定理</a><a href="../areas/index.html" title="英語版のページ">分野</a><a href="../def/index.html" title="英語版のページ">定義</a><a href="docs/index.html">文書</a><a href="about.html" class="cur">このページについて</a><a href="../about.html" class="lang" lang="en" title="このページの英語版">English</a></nav>
+<nav><a href="index.html">概要</a><a href="route/index.html">証明の道筋</a><a href="dag/index.html">ランドマーク図</a><a href="thm.html">定理</a><a href="../areas/index.html" title="英語版のページ">分野</a><a href="../def/index.html" title="英語版のページ">定義</a><a href="docs/index.html">文書</a><a href="about.html" class="cur">このページについて</a><a href="../about.html" class="lang" lang="en" title="このページの英語版">English</a></nav>
 <div class="search"><input id="q" type="search" placeholder="定理 29,511 件と定義ファイル 1,450 件を名前で検索…" autocomplete="off" spellcheck="false"><div id="q-results"></div></div>
 </div></header>
 <main class="prose">
@@ -25,7 +25,7 @@
 <li>すべてが証明済みです。予想や未完成のノードはないので、グラフは一色で描かれています。角の折れた箱は定義モジュールです。</li>
 </ul>
 <h2>この日本語版について</h2>
-<p><code>html/ja/</code> の下にあるのは、概要、証明の道筋（§1〜§7 と <code>PROOF-PATH.md</code> の要約）、ランドマーク図、文書の索引と README、そしてこのページの日本語訳です。英語版と同じデータ、同じ図、同じ定理カードを使い、Lean の命題文と図のラベルは英語版のまま流用しています。定理ページ（<code>thm.html</code>）、定義ページ、分野ページと検索結果は英語版のみで、日本語ページからのリンクはそれらの英語ページに向かいます。日本語の散文は英語の散文を訳したものであり、英語版と Lean が食い違うときは Lean が正しいのと同様に、日本語版と英語版が食い違うときは英語版が、そして何より Lean が正です。各ページ右上の「English」で対応する英語ページに移れます。</p>
+<p><code>html/ja/</code> の下にあるのは、概要、証明の道筋（§1〜§7 と <code>PROOF-PATH.md</code> の要約）、ランドマーク図、定理ページ（<code>thm.html</code>）、文書の索引と README、そしてこのページの日本語訳です。英語版と同じデータ、同じ図、同じ定理カードを使い、Lean の命題文と図のラベルは英語版のまま流用しています。定理ページは、証明の道筋の文書で名前の挙がる 49 件の<b>ランドマーク定理</b>については、非形式的な命題・証明のアイデア・背景説明・古典的な定理との比較まで日本語に翻訳しています。残る 29,462 件の定理は、Lean の命題文・引用関係・被引用関係・展開できる近傍グラフといったページの骨格は日本語で表示されますが、非形式的な解説は英語のままで、その旨をページ内に明記します（元の英語の解説そのものは、<code>html/thm.html</code> の英語版と同じものです）。定義ページ、分野ページと検索結果は英語版のみで、日本語ページからのリンクはそれらの英語ページに向かいます。日本語の散文は英語の散文を訳したものであり、英語版と Lean が食い違うときは Lean が正しいのと同様に、日本語版と英語版が食い違うときは英語版が、そして何より Lean が正です。各ページ右上の「English」で対応する英語ページに移れます。</p>
 <h2>フォルダの使い方</h2>
 <p><code>html/index.html</code>（英語）または <code>html/ja/index.html</code>（日本語）をブラウザで開いてください。サーバーは不要で、ネットワークから何も取得しません。リンクはすべて相対パスです。<code>.lean</code> ソースファイルへのリンクは、このフォルダがリポジトリの直下（<code>Theorems/</code>、<code>P2M/</code>、<code>Definitions/</code> の隣）にあることを前提としています。それ以外はフォルダがどこにあっても動きます。対話的な近傍グラフは WebAssembly にコンパイルした Graphviz（同梱）を使います。ブラウザがローカルファイルからの実行を拒否した場合、ページにその旨が表示され、一覧が同じ情報を担います。Chromium 系のブラウザでテストしました。ページは古くからある Web の機能（クラシックスクリプト、SVG。モジュールやネットワーク要求は使いません）だけを用いているので、Firefox や Safari でもディスクから同じように動くはずです。</p>
 <h2>第三者の素材</h2>
@@ -33,7 +33,7 @@
 </article>
 
 </main>
-<footer>このリポジトリの Lean ソース（Lean v4.33.1, Mathlib v4.33.0）を解説するページ。命題文は .lean ファイルから逐語的に引用し、依存関係の辺は証明モジュールの <code>import Theorems.Thm_…</code> 行から取っている。定理・定義の個別ページは英語版のみ。<a href="about.html">このページについて</a>。</footer>
+<footer>このリポジトリの Lean ソース（Lean v4.33.1, Mathlib v4.33.0）を解説するページ。命題文は .lean ファイルから逐語的に引用し、依存関係の辺は証明モジュールの <code>import Theorems.Thm_…</code> 行から取っている。<a href="thm.html">49 件のランドマーク定理</a>は本文が日本語に翻訳されており、それ以外の定理・定義の個別ページは英語版のみ。<a href="about.html">このページについて</a>。</footer>
 <script src="../assets/hl.js"></script><script src="../assets/site.js"></script>
 
 </body></html>
